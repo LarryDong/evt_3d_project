@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Calibrate with Arguments",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/procam-calibration/calibrate.py",
+            "console": "integratedTerminal",
+            "args": ["768", "1024", "9", "7", "75", "1", "-black_thr", "40", "-white_thr", "5", 
+                "-data_folder", "/home/larry/codeGit/evt_3d_project/procam-calibration/sample_data/capture_1"]
+            // "args": ["1280", "720", "9", "6", "17", "40", "-black_thr", "40", "-white_thr", "5", 
+            //     "-data_folder", "/home/larry/codeGit/evt_3d_project/procam-calibration/sample_data/capture_0"]
+        }
+    ]
+}
