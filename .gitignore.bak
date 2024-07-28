@@ -1,4 +1,17 @@
+*.asv
+*.csv
+*.bmp
+*.dat
+*.avi
+*.raw
+*.bias
+output/
 *.png
+*.bmp
+*.exe
+*.ini
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

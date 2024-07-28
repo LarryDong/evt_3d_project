@@ -5,10 +5,10 @@ clc;clear;close all;
 Camera_Width = 1280;	% 相机分辨率
 Camera_Height = 720;
 Binary_Threshold = 2;		% 多少个事件点认为有效数据？
-Accumualted_Delta_T = 100*1e3;	% 每张图片对应的事件的时间长度，单位：us
+Accumualted_Delta_T = 400*1e3;	% 每张图片对应的事件的时间长度，单位：us
 
 %% File input and output
-dat_file = "E:\codeGit\evt_3d_project\recording_2024-07-24_22-10-40_cd.dat";	% 输入文件
+dat_file = "E:\codeGit\evt_3d_project\checkboard.dat";	% 输入文件
 output_folder = "E:\codeGit\evt_3d_project\output\";			% 输出图片路径
 
 fprintf("--> Loading file: %s \n", dat_file);
@@ -31,20 +31,34 @@ curr_ts = (slice_idx-1) * Accumualted_Delta_T + 1;
 last_event_idx = 1;
 
 figure("Name", "Visualization");
+on_image = zeros()
 for idx = 1:N
 	if(evts(idx, 1) > next_ts)
 		extractted_evts = evts(last_event_idx :idx, :);
 		
 		% 获取累计图
 		accumulated_image = zeros(Camera_Height, Camera_Width);
+		on_image = zeros(Camera_Height, Camera_Width);
+		off_image = zeros(Camera_Height, Camera_Width);
 		for jj = 1:size(extractted_evts, 1)
 			e = extractted_evts(jj, :);
 			accumulated_image(e(3)+1, e(2)+1) = accumulated_image(e(3)+1, e(2)+1) + 1;
+			if(e(4)==1)
+				on_image(e(3)+1, e(2)+1) = on_image(e(3)+1, e(2)+1) + 1;
+			else
+				off_image(e(3)+1, e(2)+1) = off_image(e(3)+1, e(2)+1) + 1;
+			end
 		end
-		accumulated_image_show = uint8(accumulated_image*20);		% *10 增强对比度
+		accumulated_image_show = uint8(on_image*40);		% *10 增强对比度
 		subplot(2,2,1);
 		imshow(accumulated_image_show);
-		title("强度图");
+		% title("强度图");
+		title("on");
+
+		subplot(2,2,4);
+		off_image = uint8(off_image*40);		% *10 增强对比度
+		imshow(off_image);
+		title("off");
 
 		% 二值化
 		binary_image = imbinarize(accumulated_image, Binary_Threshold);

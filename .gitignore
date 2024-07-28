@@ -7,6 +7,12 @@
 *.bias
 output/
 *.png
+*.bmp
+*.exe
+*.ini
+*.bak
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
