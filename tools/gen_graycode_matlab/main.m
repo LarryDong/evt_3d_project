@@ -4,9 +4,9 @@ clc;clear;close all;
 
 % pattern是"用多少位"进行编码，pattern=4是4位格林码，可以编码最大分辨率2^4=16像素；
 % 如果投影仪分辨率大于pattern编码后的数值，则相当于降采样。
-pattern_number = 9;
-proj_width = 2560;			% 真时的投影仪分辨率
-proj_height = 1440;
+pattern_number = 8;
+proj_width = 1280;			% 真时的投影仪分辨率
+proj_height = 720;
 output_folder = "./output/";		% 输出路径
 
 % 满足2^n覆盖整个投影仪的分辨率
@@ -64,7 +64,7 @@ end
 figure("Name", "Patterns");
 for i = 1:length(proj_patterns_cell)
 	imshow(proj_patterns_cell{i});
-	waitforbuttonpress;
+	% waitforbuttonpress;
 end
 
 % 保存

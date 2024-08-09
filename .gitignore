@@ -1,3 +1,8 @@
+test/
+pattern_*/
+EVT_data_4_sets_7_31/
+*.yml
+*.txt
 *.asv
 *.csv
 *.bmp
