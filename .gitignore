@@ -2,6 +2,7 @@
 test/
 pattern_*/
 EVT_data_4_sets_7_31/
+001 - share/
 *.yml
 *.txt
 *.asv
